@@ -1,0 +1,84 @@
+﻿@model RegisterModel
+@{
+    ViewBag.Title = "Sign Up";
+}
+
+<section class="form">
+    @using (Html.BeginForm())
+    {
+        <h1> @ViewBag.Title </h1>
+        <hr />
+
+        @Html.AntiForgeryToken()
+
+        <fieldset>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new { @class = "label-big" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Please enter name" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "label-big" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Please enter email" })
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "label-big" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Please enter password" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "label-big" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Please re-enter password" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Type, new { @class = "label-big" })
+                @Html.DropDownListFor(m => m.Type, new List<SelectListItem> { new SelectListItem("Individual", "0", true), new SelectListItem("Team", "1") }, new { @id = "accountType", @class = "form-control", placeholder = "Please select accountType", @onchange = "accountTypeChanged()" })
+                @Html.ValidationMessageFor(m => m.Type)
+            </div>
+
+            <div id="divBusiness" class="form-group">
+                @Html.LabelFor(m => m.BusinessName, new { @class = "label-big" })
+                @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control", placeholder = "Please enter business/organization name" })
+                @Html.ValidationMessageFor(m => m.BusinessName)
+            </div>
+
+            <br />
+            <br />
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+            <nav class="form-group">
+                @Html.ActionLink("Sign In", "SignIn") if you do have an account.
+            </nav>
+        </fieldset>
+    }
+</section>
+
+<input type="hidden" id="businessValue" value="1" />
+
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            accountTypeChanged();
+        });
+
+        function accountTypeChanged() {
+            if ($('#accountType').val() === $('#businessValue').val()) {
+                $('#divBusiness').show();
+            } else {
+                $('#divBusiness').hide();
+            }
+        }
+
+    </script>
+}

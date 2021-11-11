@@ -1,0 +1,159 @@
+@{
+    ViewBag.Title = "Contacts";
+    ViewBag.jTableStyle = "~/css/jtable/themes/metro/blue/jtable.min.css";
+}
+
+<section>
+    <h1> @ViewBag.Title </h1>
+    <hr />
+    <div id="contactContainer" class="jtable-div"></div>
+</section>
+
+@Html.Partial("_Interactions")
+
+@section scripts
+{
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/jtable.min.js"></script>
+
+    <script type="text/javascript">
+            $(function () {
+
+                $('#contactContainer').jtable({
+                        title: 'Contacts',
+                        paging: true,
+                        sorting: false,
+                        columnSelectable: false,
+                        AntiForgeryToken: '@Html.AntiForgeryTokenValue()',
+                        actions: {
+                            listAction: '@Url.Action("List")',
+                            deleteAction: '@Url.Action("Delete")',
+                            createAction: '@Url.Action("Add")',
+                            updateAction: '@Url.Action("Edit")'
+                        },
+                        fields: {
+                            Id: {
+                                key: true,
+                                create: false,
+                                edit: false,
+                                list: false
+                            },
+                            Name: {
+                                title: 'Name'
+                            },
+                            Phone: {
+                                title: 'Phone'
+                            },
+                            Email: {
+                                title: 'Email'
+                            },
+                            Address1: {
+                                title: 'Address Line1'
+                            },
+                            Address2: {
+                                title: 'Address Line2'
+                            },
+                            AcquiredFrom: {
+                                title: 'Acquired From'
+                            },
+                            Notes: {
+                                title: 'Notes'
+                            },
+                            CreatedDate: {
+                                title: 'Created Date',
+                                create: false,
+                                edit: false
+                            },
+                            CreatedByName: {
+                                title: 'Created By',
+                                create: false,
+                                edit: false
+                            },
+                            Actions: {
+                                title: '',
+                                display: function(data) {
+                                    return `<a href='#' data-toggle='modal' data-keyboard='true' data-target='#interactionsModal' onclick='listInteractions(\"${data.record.Id}\")'>View Interactions</a>`;
+                                }}
+                        }
+                    }).jtable('load');
+            });
+
+            function listInteractions(contactId) {
+                if ($('#interactionsContainer').children().length > 0) {
+                    $('#interactionsContainer').jtable('destroy');
+                }
+
+                $('#interactionsContainer').jtable({
+                    title: 'Interactions',
+                    paging: true,
+                    sorting: false,
+                    columnSelectable: false,
+                    AntiForgeryToken: '@Html.AntiForgeryTokenValue()',
+                    actions: {
+                        listAction: `/interaction/list?contactId=${contactId}`
+                    },
+                    fields: {
+                        Id: {
+                            key: true,
+                            create: false,
+                            edit: false,
+                            list: false
+                        },
+                        Method: {
+                            title: 'Interaction Method',
+                            options: {
+                                '0': 'Phone',
+                                '1': 'Email',
+                                '2': 'Forum',
+                                '3': 'SocialMedia',
+                                '4': 'EmbeddedChat',
+                                '5': 'Other'
+                            }
+                        },
+                        MethodDetails: {
+                            title: 'Method Details'
+                        },
+                        Notes: {
+                            title: 'Notes'
+                        },
+                        InteractionDate: {
+                            title: 'Interaction Date'
+                        },
+                        CreatedDate: {
+                            title: 'Created Date'
+                        },
+                        CreatedByName: {
+                            title: 'Created By'
+                        }
+                    },
+                    messages: {
+                        noDataAvailable: 'No interactions have been registered for the contact yet.'
+                    }
+                }).jtable('load');
+            }
+    </script>
+}
+
+@section cssImport
+{
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(ViewBag.jTableStyle)" rel="stylesheet" type="text/css" />
+
+    <style>
+        .child-opener-image {
+            cursor: pointer;
+        }
+
+        .child-opener-image-column {
+            text-align: center;
+        }
+
+        .jtable-dialog-form {
+            min-width: 220px;
+        }
+
+            .jtable-dialog-form input[type="text"] {
+                min-width: 200px;
+            }
+    </style>
+}

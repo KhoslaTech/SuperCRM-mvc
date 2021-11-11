@@ -1,0 +1,20 @@
+﻿@{
+	ViewBag.Title = "Verify your Email";
+}
+
+<section class="form">
+	@using (Html.BeginForm(new { Action = "ResendVerificationEmail" }))
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-group">
+			<p>
+				If you haven't received a verification email, please click below to re-send it. If you still don't receive a mail after trying multiple times, please make sure it is spelled correctly.
+			</p>
+			<p>Send verification mail to: @Context.UserService().CurrentUser.Username</p>
+			<br/>
+			<button type="submit" class="btn btn-primary">Send</button>
+		</div>
+
+	}
+</section>

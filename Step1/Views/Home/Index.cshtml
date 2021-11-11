@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mt-5">
+
+    @if (Context.UserService().IsAuthenticated)
+    {
+        <h2>Welcome @Context.UserService().CurrentUser.Name</h2>
+    }
+    else
+    {
+        <h2>Welcome</h2>
+        <h4>Please Sign In if you have an account or else Sign Up</h4>
+    }
+</div>
+<div class="text-center mt-5">
+    <h4>Learn about <a href="https://aspsecuritykit.net/docs/getting-started/">building secure web apps with AspSecurityKit for ASP.NET Core MVC</a>.</h4>
+</div>
