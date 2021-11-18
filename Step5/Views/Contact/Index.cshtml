@@ -71,6 +71,8 @@
                             },
                             Actions: {
                                 title: '',
+                                create: false,
+                                edit: false,
                                 display: function(data) {
                                     return `<a href='#' data-toggle='modal' data-keyboard='true' data-target='#interactionsModal' onclick='listInteractions(\"${data.record.Id}\")'>View Interactions</a>`;
                                 }}
