@@ -11,6 +11,11 @@ It employs ASPSecurityKit's revolutionary [Activity-Data Authorization (ADA)](ht
 
 The sample source code is built using the ASK's [MVC template](https://ASPSecurityKit.net/docs/project-templates/#mvc).
 
+Live demo
+--------------------
+
+Visit [https://SuperCRM-Mvc.ASPSecurityKit.net](https://SuperCRM-Mvc.ASPSecurityKit.net/) to play with a live demo based on this sample.
+
 Step-by-step tutorial
 --------------------
 
