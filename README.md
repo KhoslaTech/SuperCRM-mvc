@@ -32,7 +32,7 @@ Running the sample
 * First, clone this repo or download it as zip file.
 * Open SuperCRM.sln from the appropriate step (step5 contains the full sample source code) in Visual Studio 2019 or higher.
 * From solution explorer, Open appsettings.json and,
-    - Make sure that the connectionString for the SuperFinance database is valid for your machine.
+    - Make sure that the connectionString for the SuperCRM database is valid for your machine.
     * For email related features to work, you need to set SMTP credentials in the method `SendVerificationMailAsync` method in the file `Controllers\UserController.cs` of some Gmail account (or any other SMTP service you prefer).
 * [Generate a trial license](https://aspsecuritykit.net/docs/using-the-aspsecuritykit.tools/#generate-trial-key) because step5 contains more than 15 operations allowed by the [default restrictions](https://aspsecuritykit.net/docs/license/#evaluation-restrictions). On the other hand, a [trial key](https://ASPSecurityKit.net/docs/license/#trial-key) allows far greater number of operations but is valid for a month.
 * In Package Manager Console, execute the following command to create the database:
@@ -55,4 +55,4 @@ This sample source code is licensed under [KHOSLA TECH - END USER AGREEMENT](htt
 You're free to learn and incorporate techniques and logic available in this sample in projects that uses a [licensed](https://aspsecuritykit.net/docs/license/#license-key) version of ASPSecurityKit.
 
 
-<a name="trial-license"/>The [trial license key](https://ASPSecurityKit.net/docs/license/#trial-key) (if any) in the sample lets you run the sample in Visual Studio. It's only meant for this sample and cannot be used for any other project.
+<a name="trial-license"></a>The [trial license key](https://ASPSecurityKit.net/docs/license/#trial-key) (if any) in the sample lets you run the sample in Visual Studio. It's only meant for this sample and cannot be used for any other project.
