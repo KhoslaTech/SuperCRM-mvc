@@ -7,7 +7,7 @@ A customer relationship management (CRM) software is primarily used to manage co
 
 It incorporates security controls such as [cookie-based authentication](https://ASPSecurityKit.net/features/#auth-cookie), [email verification](https://ASPSecurityKit.net/features/#user-verification), [XSS](https://ASPSecurityKit.net/features/#xss) and so on.
 
-It employs ASPSecurityKit's revolutionary [Activity-Data Authorization (ADA)](https://ASPSecurityKit.net/features/#ada) component for authorization to ensure that each user within the system can only perform operation and access data that belongs to her.
+It employs ASPSecurityKit's revolutionary [Activity-Data Authorization (ADA)](https://ASPSecurityKit.net/features/#ada) component for authorization to ensure that each user within the system can only perform operations and access data that belong to her.
 
 The sample source code is built using the ASK's [MVC template](https://ASPSecurityKit.net/docs/project-templates/#mvc).
 
@@ -34,7 +34,7 @@ Running the sample
 * From solution explorer, Open appsettings.json and,
     - Make sure that the connectionString for the SuperCRM database is valid for your machine.
     * For email related features to work, you need to set SMTP credentials in the method `SendVerificationMailAsync` method in the file `Controllers\UserController.cs` of some Gmail account (or any other SMTP service you prefer).
-* [Generate a trial license](https://aspsecuritykit.net/docs/using-the-aspsecuritykit.tools/#generate-trial-key) because step5 contains more than 15 operations allowed by the [default restrictions](https://aspsecuritykit.net/docs/license/#evaluation-restrictions). On the other hand, a [trial key](https://ASPSecurityKit.net/docs/license/#trial-key) allows far greater number of operations but is valid for a month.
+* [Generate a trial license](https://aspsecuritykit.net/docs/using-the-aspsecuritykit.tools/#generate-trial-key) because step5 contains more than 15 operations allowed by the [default restrictions](https://aspsecuritykit.net/docs/license/#evaluation-restrictions). A [trial key](https://ASPSecurityKit.net/docs/license/#trial-key) allows far greater number of operations but is valid for a month.
 * In Package Manager Console, execute the following command to create the database:
 ```ps1
 update-database
