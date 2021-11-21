@@ -166,5 +166,40 @@ namespace SuperCRM.Controllers
 					return RedirectWithMessage("Verify", "Verification was not successful; please try again.", OpResult.SomeError);
 			}
 		}
+
+		[VerificationNotRequired, SkipActivityAuthorization]
+		public async Task<ActionResult> ChangeEmail()
+		{
+			return View();
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		[VerificationNotRequired, SkipActivityAuthorization]
+		public async Task<ActionResult> ChangeEmail(ChangeEmailModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var result = await this.UserService.ChangeUsernameAsync(this.UserService.CurrentUserId, model.Password, model.Email).ConfigureAwait(false);
+				switch (result)
+				{
+					case OpResult.Success:
+						await this.UserService.GenerateVerificationTokenAsync(this.UserService.CurrentUserId).ConfigureAwait(false);
+						await this.UserService.LoadAsync(this.UserService.CurrentUserId);
+						await SendVerificationMailAsync(this.UserService.CurrentUser);
+						return RedirectWithMessage("Verify", $"We have sent you a mail at {this.UserService.CurrentUsername} – please make sure you follow the link in the mail and verify your email. Please check your email now. It may take a while to reach your inbox.", OpResult.Success);
+					case OpResult.AlreadyExists:
+						ModelState.AddModelError(string.Empty, "An account with this email is already registered.");
+						break;
+					case OpResult.InvalidPassword:
+						ModelState.AddModelError(string.Empty, "Invalid password.");
+						break;
+					default:
+						ModelState.AddModelError(string.Empty, result);
+						break;
+				}
+			}
+
+				return View(model);
+		}
 	}
 }

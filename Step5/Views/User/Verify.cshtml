@@ -9,7 +9,7 @@
 
 		<div class="form-group">
 			<p>
-				If you haven't received a verification email, please click below to re-send it. If you still don't receive a mail after trying multiple times, please make sure it is spelled correctly.
+				If you haven't received a verification email, please click below to re-send it. If you still don't receive a mail after trying multiple times, please make sure it is spelled correctly; you can <a asp-action="ChangeEmail">modify</a> it at any time.
 			</p>
 			<p>Send verification mail to: @Context.UserService().CurrentUser.Username</p>
 			<br/>
