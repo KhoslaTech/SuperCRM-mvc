@@ -40,7 +40,11 @@ public class WebAppProfile : Profile
 	            {
 		            o.PreCondition((s, d, rc) => d.CreatedDate == DateTime.MinValue);
 		            o.MapFrom(s => DateTime.UtcNow);
-	            });
+	            })
+                                .ForMember(d => d.InteractionDate, o =>
+                                {
+                                    o.MapFrom((s, d, m, rc) => s.InteractionDate ?? d.InteractionDate ?? DateTime.UtcNow);
+                                });
 
         }
     }

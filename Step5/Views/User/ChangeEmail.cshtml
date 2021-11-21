@@ -1,0 +1,35 @@
+﻿@model ChangeEmailModel
+
+@{
+    ViewBag.Title = "Change Email";
+}
+<section class="form">
+    @using (Html.BeginForm())
+    {
+        <h1> @ViewBag.Title </h1>
+        <hr />
+
+        @Html.AntiForgeryToken()
+
+        <fieldset>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "label-big" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Please enter new email" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "label-big" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Please enter current password" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+
+        </fieldset>
+    }
+</section>

@@ -73,3 +73,4 @@ localdb/
 *.prod.config
 *.sandbox.config
 .vs/
+appsettings.Development.json
